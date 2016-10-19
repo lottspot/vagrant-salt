@@ -45,10 +45,12 @@ Vagrant.configure(2) do |config|
     end
   end
 
-  # Cluster server
-  config.vm.define :srv do |srv|
-    srv.vm.network :private_network, type: 'dhcp'
-    srv.vm.hostname = 'srv'
+  # App server
+  config.vm.define :app do |app|
+    app.vm.box = 'ubuntu/trusty64'
+    app.vm.network :private_network, type: 'dhcp'
+    app.vm.hostname = 'app'
+    app.vm.provision :shell, path: 'provisioners/minion.sh'
   end
 
 end
