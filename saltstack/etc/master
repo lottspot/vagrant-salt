@@ -1,0 +1,9 @@
+# vim: syntax=yaml
+
+auto_accept: true
+file_roots:
+  base:
+    - /srv/saltstack/salt
+pillar_roots:
+  base:
+    - /srv/saltstack/pillar
