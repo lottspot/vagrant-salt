@@ -17,3 +17,14 @@ if ! [ "$(readlink -f /srv/saltstack)" = '/vagrant/saltstack/srv' ]; then
 else
   printf 'Link is proper at /srv/saltstack'
 fi
+
+# Preseed master key
+masterkey=$(cat /vagrant/salt-keys/master/master.pub)
+if ! [ "$(printf '%s' "$masterkey" | md5sum | cut -d' ' -f1)" = "$(md5sum /etc/salt/pki/minion/minion_master.pub | cut -d' ' -f1)" ]; then
+  test ! -e /etc/salt/pki/minion/minion_master.pub || rm -rf /etc/salt/pki/minion/minion_master.pub
+  test -e /etc/salt/pki/minion || mkdir -p /etc/salt/pki/minion
+  printf '%s' "$masterkey" > /etc/salt/pki/minion/minion_master.pub
+  printf 'Seeded master public key\n'
+else
+  printf 'Already seeded master public key\n'
+fi
