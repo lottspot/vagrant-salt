@@ -1,3 +1,3 @@
 base:
   app:
-    - test
+    - verify_ubuntu
