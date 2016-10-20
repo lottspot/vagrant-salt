@@ -51,6 +51,11 @@ Vagrant.configure(2) do |config|
     app.vm.network :private_network, type: 'dhcp'
     app.vm.hostname = 'app'
     app.vm.provision :shell, path: 'provisioners/minion.sh'
+    app.vm.provision :salt do |salt|
+      salt.colorize = true
+      salt.run_highstate = true
+      salt.install_type = 'stable'
+    end
   end
 
 end
