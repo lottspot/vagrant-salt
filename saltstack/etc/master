@@ -3,7 +3,7 @@
 auto_accept: true
 file_roots:
   base:
-    - /srv/saltstack/salt
+    - /srv/saltstack/files
 pillar_roots:
   base:
     - /srv/saltstack/pillar
