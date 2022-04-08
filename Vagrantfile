@@ -47,7 +47,7 @@ Vagrant.configure(2) do |config|
 
   # App server
   config.vm.define :app do |app|
-    app.vm.box = 'ubuntu/trusty64'
+    app.vm.box = 'ubuntu/focal64'
     app.vm.network :private_network, type: 'dhcp'
     app.vm.hostname = 'app'
     app.vm.provision :shell, path: 'provisioners/minion.sh'
