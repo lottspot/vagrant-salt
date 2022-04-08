@@ -35,7 +35,7 @@ Vagrant.configure(2) do |config|
 
   # Salt master
   config.vm.define :master do |master|
-    master.vm.network :private_network, ip: '192.168.128.10'
+    master.vm.network :private_network, ip: '192.168.56.10'
     master.vm.hostname = 'master'
     master.vm.provision :shell, path: 'provisioners/master.sh'
     master.vm.provision :salt do |salt|
