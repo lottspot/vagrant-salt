@@ -1,3 +1,3 @@
 base:
   app:
-    - verify_ubuntu
+    - verify_linux
