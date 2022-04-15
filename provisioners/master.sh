@@ -38,11 +38,10 @@ else
 fi
 
 # Preseed minion keys
-minionkey_app=$(cat /vagrant/salt-keys/app/minion.pub)
-if ! [ "$(printf '%s\n' "$minionkey_app" | md5sum | cut -d' ' -f1)" = "$(md5sum /etc/salt/pki/master/minions/app | cut -d' ' -f1)" ]; then
+if ! [ "$(md5sum /vagrant/salt-keys/app/minion.pub | cut -d' ' -f1)" = "$(md5sum /etc/salt/pki/master/minions/app | cut -d' ' -f1)" ]; then
   test ! -e /etc/salt/pki/master/minions/app || rm -rf /etc/salt/pki/master/minions/app
   test -e /etc/salt/pki/master/minions || mkdir -p /etc/salt/pki/master/minions
-  printf '%s\n' "$minionkey_app" > /etc/salt/pki/master/minions/app
+  cp /vagrant/salt-keys/app/minion.pub /etc/salt/pki/master/minions/app
   printf 'Seeded key for minion: app\n'
 else
   printf 'Already seeded key for minion: app\n'
